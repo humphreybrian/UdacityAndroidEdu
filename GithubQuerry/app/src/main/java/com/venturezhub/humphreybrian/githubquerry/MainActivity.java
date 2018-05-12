@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.venturezhub.humphreybrian.githubquerry.utilities.NetworkUtils;
+
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSerchbox;
@@ -21,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
         mSerchbox = (EditText) findViewById(R.id.et_search_box);
         searchUrl = (TextView) findViewById(R.id.tv_url);
         githubResuts = (TextView) findViewById(R.id.tv_github_search_results_json);
+    }
+    private void makeGithubSearchQuery(){
+        String githubQuery = mSerchbox.getText().toString();
+        URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+        searchUrl.setText(githubSearchUrl.toString());
     }
 
     @Override
